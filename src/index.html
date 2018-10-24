@@ -1,57 +1,33 @@
 <!DOCTYPE html>
 <html>
-
-<head>
-  <script type="text/javascript" src="bundle.js"></script>
-  <title>Doctor Look Up</title>
-</head>
-
-<body>
-  <div class="container">
-    <center><h1 >Seattle Doctor Search</h1></center>
-    <br>
-    <br>
-    <form id="form">
-      <label for="searchSymtoms">Enter your current symptoms</label>
-      <input id="searchSymtoms" type="text">
-      <button class="btn btn-warning" type="submit">Search</button>
-    </form>
-    <br>
-    
-    <hr>
-    <center><h2>Below are the avalible doctors in your area</h2></center>
-    <table class="table table-striped">
-      <thead class="thead-light">
-        <tr>
-          <th scope="col">Name</th>
-          <th scope="col">Address</th>
-          <th scope="col">Phone Number</th>
-          <th scope="col">Website Link</th>
-        </tr>
-      </thead>
-      <tbody id="results">
-
-      </tbody>
-</body>
-
-</html>
-
-<!-- <!DOCTYPE html>
-<html>
   <head>
-    <title>Doctor Look Up</title>
+    <title>Doctor Lookup</title>
   </head>
   <body>
+    <center><h1><p class="jumbotron header">Doctor Lookup</p></h1></center>
     <div class="container">
-      <h1>Find a doctor for you</h1>
-      <label for="list">Select a symptom</label>
-      <select id="List">
-      </select>
-      <button class="btn-success" id="character">Find Doctor for the selected symptom</button>
-      <div class="errors"></div>
-      <div class="showDoctor"></div>
-      <div class="charImg"></div>
-
+     <div class="row">
+      <div class="column">
+         <form id="searchDoctor">
+          <label id = "style" for="searchDoc">Enter your doctor's name to search or click to see all availible</label>
+          <input id="searchDoc" type="text">
+          <button type="submit" class="btn btn-success">Search</button>
+         </form>
+      </div>
+      
+      <div class="column">
+        <form id="searchSymptom">
+          <label id= "style" for="symptom">Enter your current symptoms</label>
+          <input id="symptom" type="text">
+         <button type="submit" class="btn btn-success">Submit</button>
+        </form>
+      </div>
     </div>
+   <br>
+   <hr>
+  <div id="results">
+  </div>
+  
+  </div>
   </body>
-</html> -->
+</html>

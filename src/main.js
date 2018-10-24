@@ -1,51 +1,59 @@
-
-// const Promise = require('es6-promise').Promise;
-// const api_key = process.env.API_KEY;
-import $ from "jquery";
-import "bootstrap";
-import "bootstrap/dist/css/bootstrap.min.css";
-import "./styles.css";
-import { Doctor } from "./doctorlist.js";
+import $ from 'jquery';
+import 'bootstrap';
+import 'bootstrap/dist/css/bootstrap.min.css';
+import './styles.css';
+import { Doctor } from './doctorlist.js';
 
 $(document).ready(function() {
-  $("#form").submit(function(event) {
-    event.preventDefault();
-    $("#results").empty();
-
-    let searchSymptom = $("#searchSymptom").val();
-
-    let newSearch = new Doctor();
-    let promise = newSearch.getDoctor(searchSymptom);
-
-    promise.then(
-      function(response) {
-        let body = JSON.parse(response);
-        if (body.data.length > 0) {
-          for (let i = 0; i < body.data.length; i++) {
-            $("#results").append(`
-            <tr>
-              <td>${body.data[i].profile.first_name} ${
-              body.data[i].profile.last_name
-            }</td> 
-              <td>${body.data[i].practices[0].visit_address.street} ${
-              body.data[i].practices[0].visit_address.city
-            } ${body.data[i].practices[0].visit_address.state} ${
-              body.data[i].practices[0].visit_address.zip
-            }</td> <td>${body.data[i].practices[0].phones[0].number}</td>
-            } </td>
-              </tr>`);
-          }
-        } else {
-          $("#results").append(
-            `<h3>No matches happened.</h3>`
-          );
+    $("#searchDoctor").submit(function(event){
+        event.preventDefault();
+        $("#results").html("");
+        let newSearchDoctor = $("#searchDoc").val(); 
+        let newDoctor = new Doctor(); 
+        let promise = newDoctor.searchDoctor(newSearchDoctor);
+    
+        promise.then(function(response) {
+          let body = JSON.parse(response);
+            let result = body.data;
+            if (result.length === 0){$("#results").append("No doctor's were found with the current search")}
+            else {
+            for(var i=0; i < result.length; i++) {
+            $("#results").append("<h4>" + "Dr. " + result[i].profile.first_name + " " + result[i].profile.last_name + "</h4>"+ 
+            "<h5>" + "Phone # " + result[i].practices[0].phones[0].number + "</h5>" + "<br>"  + 
+            "<h5>" + "Address : " + "</h5>"  +
+            "City: " + result[i].practices[0].visit_address.city + "<br>" + 
+            "State: " + result[i].practices[0].visit_address.state + "<br>" + 
+            "Street: " + result[i].practices[0].visit_address.street + "<br>" +
+            "Zip Code: " + result[i].practices[0].visit_address.zip + "<br>" +
+            "Check Availablity: " + result[i].practices[0].accepts_new_patients + "<hr>");
+            }
         }
-      },
-      function(error) {
-        $(".showErrors").text(
-          `There was an error processing your request: ${error.message}`
-        );
-      }
-    );
-  });
+        })
+    });
+
+    $("#searchSymptom").submit(function(event){
+        event.preventDefault();
+        $("#results").html("");
+        let searchSymptom = $("#symptom").val(); 
+        let newDoctor = new Doctor();
+        let promise = newDoctor.searchSymptom(searchSymptom);
+    
+        promise.then(function(response) {
+          let body = JSON.parse(response);
+            let result = body.data;
+            if (result.length === 0){$("#results").append("No doctor's were found with the current search")}
+            else {
+            for(var i=0; i < result.length; i++) {
+            $("#results").append("<h4>" + "Dr. " +  result[i].profile.first_name + " " + result[i].profile.last_name + "</h4>" + 
+            "<h5>" + "Phone number: " + result[i].practices[0].phones[0].number + "</h5>" + "" +"<br>" + 
+            "<h5>" + "Address : " + "</h5>" +
+            "City: " + result[i].practices[0].visit_address.city + "<br>" + 
+            "State: " + result[i].practices[0].visit_address.state + "<br>" + 
+            "Street: " + result[i].practices[0].visit_address.street + "<br>" + 
+            "Zip Code: " + result[i].practices[0].visit_address.zip + "<br>" + "<hr>");
+            }   
+        }
+        })
+    });
 });
+
