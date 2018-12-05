@@ -6,12 +6,13 @@
 
 ## Description
 
-This is a basic search website that you can type in a name and will be
+This is a basic search website that you can type in a name or a symptom and will be shown all the matches for the input.
 
 ## Setup/Installation Requirements
 
 - Clone this repository
 - Run npm install
+- API_KEY="0f28d22c9def046ae1cd6c0fee4a0fa3"
 - Open Webpage
 - User submits the input
 - The user will get back the match results from the input.
