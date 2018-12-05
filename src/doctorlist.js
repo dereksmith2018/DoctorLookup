@@ -19,7 +19,7 @@ export class Doctor{
     searchSymptom(symptom) {
       return new Promise(function(resolve, reject) {
         let request = new XMLHttpRequest();
-        let url = `https://api.betterdoctor.com/2016-03-01/doctors?query=${symptom}&location=wa-seattle&skip=0&limit=20&user_key=${process.env.API_KEY}`;
+        let url = `https://api.betterdoctor.com/2016-03-01/doctors?query=${symptom}&location=wa-seattle&skip=0&limit=20&user_key=${process.env.API_KEY}`; 
         request.onload = function () {
         if (this.status === 200) {
         resolve(request.response);
@@ -32,3 +32,4 @@ export class Doctor{
         });
       }
 }
+//cant figure how link the two searches in one container on the html. look into

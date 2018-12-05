@@ -26,8 +26,8 @@ $(document).ready(function() {
             "Street: " + result[i].practices[0].visit_address.street + "<br>" +
             "Zip Code: " + result[i].practices[0].visit_address.zip + "<br>" +
             "Check Availablity: " + result[i].practices[0].accepts_new_patients + "<hr>");
-            }
-        }
+            } // need to keep setting the page up so each value is shown for easy reading 
+        }     // cant figure out on the image input
         })
     });
 
